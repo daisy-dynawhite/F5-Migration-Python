@@ -32,6 +32,7 @@ sips:
   fw: legfw2
   tg: traffic-group-local-only
 
+
 #SIPs to create
 
 - name: SIP-vlan50-fw1-New
@@ -77,18 +78,15 @@ devices:
   router1: 192.168.186.157
   router2: 192.168.186.158
   
+
 vs:
 - vsdel: 'delete ltm virtual vs-test-1'
-  vsadd: "create ltm virtual vs-test-1 destination 100.64.150.1:514 ip-protocol tcp mask 255.255.255.255 profiles add {fastL4} rules {iRule1 iRule2} source 0.0.0.0/0"
+  vsadd: "create ltm virtual vs-test-1 destination 100.64.150.1:514 ip-protocol tcp mask 255.255.255.255 profiles add {fastL4} rules {iRule1 iRule2} source 0.0.0.0/0 pool pool-vs-test1"
   vsname: 'vs-test-1'
-- vsdel: 'delete ltm virtual vs-test-2'
-  vsadd: "create ltm virtual vs-test-2 destination 100.64.150.2:514 ip-protocol tcp mask 255.255.255.255 profiles add {fastL4} rules {iRule1 iRule2} source 0.0.0.0/0"
-  vsname: 'vs-test-2'
+  vsdelpart: 'P-LEGACY'
+  vsaddpart: 'P-DEV'
 
 pools:
 - pooldel: 'delete ltm pool pool-vs-test1'
-  pooladd: 'create ltm pool pool-vs-test1 members add {VM1:514 {address 192.168.50.4} VM2:514{address 192.168.50.5}}'
   poolname: 'pool-vs-test1'
-- pooldel: 'delete ltm pool pool-vs-test2'
-  pooladd: 'create ltm pool pool-vs-test2 members add {VM3:514 {address 192.168.50.6} VM4:514{address 192.168.50.7}}'
-  poolname: 'pool-vs-test2'
+  pooldelpart: 'P-DEV'
