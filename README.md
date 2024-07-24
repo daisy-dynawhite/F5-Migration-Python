@@ -7,6 +7,9 @@
 # :star2: About the Project
 - <p>This project is designed to automate the process of moving L3 gateways between disparate F5s, including the upstream routes that point to the subjected prefixes.</p>
 - <p>This project will use Python w/Netmiko to migrate configuration between F5 clusters and update routing.</p>
+- <p>This notional scenario will migrate VLAN50 (192.168.50.0/24) Self-IPs (floating/local)from OLD F5s to NEW F5s.</p>
+- <p>The Python script will be executed from LVM-001 (Ubuntu 22.04 LTS) and communicate with the management plane of all devices.</p>
+- <p>The topology depicted below is to test the functionality of the script and not representative of real-world conditions.</p>
 
 ## :dart: Languages
 - Python3, YAML
